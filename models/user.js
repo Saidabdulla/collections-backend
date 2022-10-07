@@ -11,7 +11,7 @@ const userSchema = Schema({
     required: true,
     trim: true,
   },
-  isBlocked: {
+  isActive: {
     type: Boolean,
     required: true,
   },
