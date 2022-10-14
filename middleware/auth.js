@@ -27,4 +27,14 @@ const protect = asyncHandler(async (req, res, next) => {
   }
 });
 
-module.exports = { protect };
+const checkAdmin = (req, res, next) => {
+  if (!req.user.isAdmin) {
+    return res
+      .status(403)
+      .json({ error: "Access to that resource is forbidden." });
+  }
+
+  next();
+};
+
+module.exports = { protect, checkAdmin };
