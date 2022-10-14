@@ -3,8 +3,8 @@ const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const connectDB = require("./lib/connectDb");
-const userRoutes = require("./routes/user");
-const adminRoutes = require("./routes/dashboard");
+const authRoutes = require("./routes/auth");
+const adminRoutes = require("./routes/admin");
 
 const app = express();
 require("dotenv").config();
@@ -16,8 +16,8 @@ app.use(helmet());
 app.use(morgan("tiny"));
 app.use(cors());
 
-app.use("/api/user", userRoutes);
-app.use("/api/dashboard", adminRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/admin", adminRoutes);
 app.use("*", (req, res) => {
   res.status(404).json("404 - Not Found");
 });
